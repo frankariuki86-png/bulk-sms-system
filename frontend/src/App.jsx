@@ -5,6 +5,7 @@ import { LoginPage } from './pages/LoginPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { CreateCampaignPage } from './pages/CreateCampaignPage';
 import { ContactsPage } from './pages/ContactsPage';
+import { AccountSettingsPage } from './pages/AccountSettingsPage';
 import { Navigation } from './components/Navigation';
 import { useAuth } from './hooks/useAuth';
 import './index.css';
@@ -36,6 +37,7 @@ function App() {
                       <Route path="/" element={<DashboardPage />} />
                       <Route path="/campaigns/create" element={<CreateCampaignPage />} />
                       <Route path="/contacts" element={<ContactsPage />} />
+                      <Route path="/account" element={<AccountSettingsPage />} />
                       <Route path="*" element={<Navigate to="/" />} />
                     </Routes>
                   </main>
