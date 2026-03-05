@@ -30,11 +30,11 @@ export function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100 flex items-center justify-center p-4 sm:p-6">
       <Card className="w-full max-w-md">
         <CardBody>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">SMS Hub</h1>
-          <p className="text-gray-600 mb-6">Manage your bulk SMS campaigns</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">SMS Hub</h1>
+          <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">Manage your bulk SMS campaigns</p>
 
           {error && (
             <Alert type="error" message={error} onClose={() => setError('')} className="mb-4" />

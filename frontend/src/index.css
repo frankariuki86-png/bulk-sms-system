@@ -40,3 +40,24 @@ main {
 .fade-in {
   animation: fadeIn 0.3s ease-in;
 }
+
+/* Mobile-first responsive utilities */
+@media (max-width: 640px) {
+  /* Ensure proper touch targets on mobile */
+  button, input, select, textarea {
+    @apply min-h-[44px];
+  }
+  
+  /* Prevent horizontal scroll on mobile */
+  body, html {
+    @apply overflow-x-hidden;
+  }
+}
+
+/* Better touch events on mobile */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+  }
+}

@@ -175,8 +175,8 @@ export function ContactsPage() {
           description="Import contacts from a CSV file to create a new group or add to existing one"
         />
         <CardBody>
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-3 sm:space-y-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
               <Input
                 label="Group Name"
                 type="text"
@@ -193,7 +193,7 @@ export function ContactsPage() {
                   type="file"
                   accept=".csv"
                   onChange={handleFileChange}
-                  className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm"
                 />
                 <p className="text-xs text-gray-500">
                   CSV Format: Name, Phone (e.g., John Doe, +234812345678)
@@ -202,21 +202,21 @@ export function ContactsPage() {
             </div>
 
             {showPreview && previewData.length > 0 && (
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <h4 className="font-medium text-blue-900 mb-3">Preview (showing first 5 rows)</h4>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 -mx-3 sm:mx-0 sm:rounded-lg">
+                <h4 className="font-medium text-blue-900 mb-3 px-3 sm:px-0">Preview (showing first 5 rows)</h4>
+                <div className="overflow-x-auto px-3 sm:px-0">
+                  <table className="w-full text-xs sm:text-sm">
                     <thead>
                       <tr className="border-b border-blue-200">
-                        <th className="text-left py-2 px-3 font-medium text-blue-900">Name</th>
-                        <th className="text-left py-2 px-3 font-medium text-blue-900">Phone</th>
+                        <th className="text-left py-2 px-2 sm:px-3 font-medium text-blue-900">Name</th>
+                        <th className="text-left py-2 px-2 sm:px-3 font-medium text-blue-900">Phone</th>
                       </tr>
                     </thead>
                     <tbody>
                       {previewData.map((row, idx) => (
                         <tr key={idx} className="border-b border-blue-100">
-                          <td className="py-2 px-3 text-blue-800">{row.name}</td>
-                          <td className="py-2 px-3 text-blue-800">{row.phone_number}</td>
+                          <td className="py-2 px-2 sm:px-3 text-blue-800 truncate">{row.name}</td>
+                          <td className="py-2 px-2 sm:px-3 text-blue-800 truncate">{row.phone_number}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -263,21 +263,21 @@ export function ContactsPage() {
               {groups.map(group => (
                 <div
                   key={group}
-                  className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition"
+                  className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition gap-3 sm:gap-4"
                 >
-                  <div>
-                    <h3 className="font-semibold text-gray-900">{group}</h3>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-gray-900 truncate">{group}</h3>
                     <p className="text-sm text-gray-600 mt-1">
                       {groupCounts[group] || 0} contacts
                     </p>
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
                     <Badge variant="primary">
                       {groupCounts[group] || 0}
                     </Badge>
                     <button
                       onClick={() => handleDeleteGroup(group)}
-                      className="px-3 py-1.5 text-sm font-medium text-danger hover:bg-red-50 rounded transition"
+                      className="px-2 sm:px-3 py-1.5 text-xs sm:text-sm font-medium text-danger hover:bg-red-50 rounded transition whitespace-nowrap"
                     >
                       Delete
                     </button>
@@ -293,14 +293,14 @@ export function ContactsPage() {
       <Card>
         <CardHeader title="CSV Upload Instructions" />
         <CardBody>
-          <div className="space-y-4 text-sm text-gray-700">
+          <div className="space-y-4 text-xs sm:text-sm text-gray-700">
             <div>
               <h4 className="font-medium text-gray-900 mb-2">File Format</h4>
-              <p>Your CSV file should have at least two columns: <code className="bg-gray-100 px-2 py-1 rounded">Name</code> and <code className="bg-gray-100 px-2 py-1 rounded">Phone</code></p>
+              <p>Your CSV file should have at least two columns: <code className="bg-gray-100 px-2 py-1 rounded text-xs">Name</code> and <code className="bg-gray-100 px-2 py-1 rounded text-xs">Phone</code></p>
             </div>
             <div>
               <h4 className="font-medium text-gray-900 mb-2">Example CSV Content</h4>
-              <div className="bg-gray-100 p-3 rounded font-mono text-xs">
+              <div className="bg-gray-100 p-3 rounded font-mono text-xs overflow-x-auto">
                 Name,Phone<br/>
                 John Doe,+234812345678<br/>
                 Jane Smith,+234912345678<br/>

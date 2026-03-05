@@ -79,7 +79,7 @@ export function DashboardPage() {
       {error && <Alert type="error" message={error} onClose={() => setError('')} />}
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
         <Card>
           <CardBody>
             <div className="text-gray-600 text-sm font-medium mb-2">Total Campaigns</div>
@@ -122,18 +122,20 @@ export function DashboardPage() {
               {campaigns.map(campaign => (
                 <div
                   key={campaign.id}
-                  className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition"
+                  className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition gap-3 sm:gap-4"
                 >
-                  <div>
-                    <h3 className="font-semibold text-gray-900">{campaign.name}</h3>
-                    <p className="text-sm text-gray-600 mt-1">{campaign.message}</p>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-gray-900 truncate">{campaign.name}</h3>
+                    <p className="text-sm text-gray-600 mt-1 line-clamp-2">{campaign.message}</p>
                     <p className="text-xs text-gray-500 mt-2">
                       {campaign.total_sms} messages • Created {formatDistanceToNow(new Date(campaign.created_at), { addSuffix: true })}
                     </p>
                   </div>
-                  <Badge variant={getStatusColor(campaign.status)}>
-                    {campaign.status}
-                  </Badge>
+                  <div className="flex-shrink-0">
+                    <Badge variant={getStatusColor(campaign.status)}>
+                      {campaign.status}
+                    </Badge>
+                  </div>
                 </div>
               ))}
             </div>

@@ -7,13 +7,13 @@ export function Alert({ type = 'info', title, message, onClose }) {
   };
 
   return (
-    <div className={`p-4 rounded-lg border ${types[type]} flex justify-between items-start`}>
-      <div>
-        {title && <h3 className="font-medium">{title}</h3>}
-        {message && <p className="text-sm mt-1">{message}</p>}
+    <div className={`p-3 sm:p-4 rounded-lg border ${types[type]} flex justify-between items-start gap-3`}>
+      <div className="flex-1 min-w-0">
+        {title && <h3 className="font-medium text-sm sm:text-base">{title}</h3>}
+        {message && <p className="text-xs sm:text-sm mt-1">{message}</p>}
       </div>
       {onClose && (
-        <button onClick={onClose} className="text-lg leading-none opacity-50 hover:opacity-75">
+        <button onClick={onClose} className="text-lg leading-none opacity-50 hover:opacity-75 flex-shrink-0">
           ×
         </button>
       )}

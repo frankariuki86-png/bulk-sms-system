@@ -102,14 +102,14 @@ export function CreateCampaignPage() {
   }, []);
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="w-full max-w-2xl mx-auto px-2 sm:px-0">
       <Card>
         <CardHeader title="Create Campaign" description="Set up a new SMS campaign" />
         <CardBody>
-          {error && <Alert type="error" message={error} onClose={() => setError('')} className="mb-6" />}
-          {success && <Alert type="success" message={success} className="mb-6" />}
+          {error && <Alert type="error" message={error} onClose={() => setError('')} className="mb-4 sm:mb-6" />}
+          {success && <Alert type="success" message={success} className="mb-4 sm:mb-6" />}
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             <Input
               label="Campaign Name"
               name="name"
@@ -130,7 +130,7 @@ export function CreateCampaignPage() {
                 placeholder="Enter your SMS message (max 160 characters)"
                 maxLength={160}
                 rows={4}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm sm:text-base"
                 required
               />
               <p className="text-xs text-gray-500 mt-1">
@@ -153,7 +153,7 @@ export function CreateCampaignPage() {
                     setFormData(prev => ({ ...prev, groupName: val }));
                   }
                 }}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm sm:text-base"
                 required
               >
                 <option value="">-- Select group --</option>
@@ -175,8 +175,8 @@ export function CreateCampaignPage() {
               )}
             </div>
 
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <p className="text-sm text-blue-800">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4">
+              <p className="text-xs sm:text-sm text-blue-800">
                 <strong>Note:</strong> The campaign will be created with all contacts from the selected group. 
                 You can track the sending progress in real-time.
               </p>

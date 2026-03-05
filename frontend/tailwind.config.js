@@ -19,7 +19,25 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
+      screens: {
+        'xs': '375px',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    function({ addBase, theme }) {
+      addBase({
+        'html': {
+          scrollBehavior: 'smooth',
+        },
+        '@supports (padding: max(0px))': {
+          'body': {
+            paddingLeft: 'max(12px, env(safe-area-inset-left))',
+            paddingRight: 'max(12px, env(safe-area-inset-right))',
+          },
+        },
+      });
+    },
+  ],
 };
+
