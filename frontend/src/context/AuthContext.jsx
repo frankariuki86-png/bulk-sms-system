@@ -78,6 +78,45 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
+  const updateProfile = useCallback(async (updates) => {
+    try {
+      setError(null);
+      const { data, error } = await supabase.auth.updateUser({
+        data: updates,
+      });
+      if (error) throw error;
+      setUser(data.user);
+      return data;
+    } catch (err) {
+      setError(err.message);
+      throw err;
+    }
+  }, []);
+
+  const changePassword = useCallback(async (currentPassword, newPassword) => {
+    try {
+      setError(null);
+      // First verify current password by trying to re-auth
+      const { error: reAuthError } = await supabase.auth.signInWithPassword({
+        email: user?.email,
+        password: currentPassword,
+      });
+      if (reAuthError) {
+        throw new Error('Current password is incorrect');
+      }
+
+      // Change password
+      const { error } = await supabase.auth.updateUser({
+        password: newPassword,
+      });
+      if (error) throw error;
+      return true;
+    } catch (err) {
+      setError(err.message);
+      throw err;
+    }
+  }, [user?.email]);
+
   const value = {
     user,
     session,
@@ -86,6 +125,8 @@ export function AuthProvider({ children }) {
     login,
     signup,
     logout,
+    updateProfile,
+    changePassword,
     isAuthenticated: !!user,
   };
 
