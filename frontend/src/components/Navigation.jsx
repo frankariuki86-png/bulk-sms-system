@@ -6,6 +6,7 @@ export function Navigation() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -47,16 +48,39 @@ export function Navigation() {
           </div>
 
           {/* User Section */}
-          <div className="flex items-center gap-2 sm:gap-4">
-            <span className="hidden sm:inline text-xs sm:text-sm text-gray-600 truncate max-w-[150px]">
-              {user.email}
-            </span>
-            <button
-              onClick={handleLogout}
-              className="hidden sm:block px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 rounded-lg transition whitespace-nowrap"
-            >
-              Logout
-            </button>
+          <div className="flex items-center gap-2 sm:gap-4 relative">
+            {/* User Dropdown (Desktop) */}
+            <div className="hidden sm:block relative">
+              <button
+                onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-100 transition"
+              >
+                <span className="text-xs sm:text-sm truncate max-w-[120px]">{user.email}</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {userDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                  <Link
+                    to="/account"
+                    onClick={() => setUserDropdownOpen(false)}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-t-lg"
+                  >
+                    Account Settings
+                  </Link>
+                  <button
+                    onClick={() => {
+                      setUserDropdownOpen(false);
+                      handleLogout();
+                    }}
+                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-b-lg border-t border-gray-200"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
 
             {/* Mobile Menu Button */}
             <button
@@ -93,6 +117,13 @@ export function Navigation() {
               <p className="px-3 py-1 text-xs text-gray-600 truncate">
                 {user.email}
               </p>
+              <Link
+                to="/account"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block mt-2 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition"
+              >
+                Account Settings
+              </Link>
               <button
                 onClick={() => {
                   handleLogout();
